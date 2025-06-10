@@ -3,3 +3,5 @@ Create a new Project/Folder
 2. create a new project --> django-admin startproject <projectname>
 3. To see all Django commands --> django-admin
 4. Now change working dir to project1 and type py manage.py runserver - Django default window will appear
+
+

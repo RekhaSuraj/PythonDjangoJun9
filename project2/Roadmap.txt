@@ -1,0 +1,9 @@
+Roadmap
+
+1. create project2
+2. create app - type django-admin startapp <appname>
+3  Inside app/views.py - include HttpResponse and write a function, say hello()
+4. project2/urls.py - from myapp import views as v1
+5. In urlPatterns, add the path - path('hello/', v1.hello),
+6. Create one more app - mypp2. create another function in views.py and repeat same steps
+7. Runserver - py manage.py runserver
