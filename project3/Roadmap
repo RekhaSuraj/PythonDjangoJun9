@@ -1,0 +1,30 @@
+Include urls in App level
+
+1. Create project
+2. Create myapp1
+3. Create myapp2
+4. Create urls files in myapp1 and myapp2 folders
+5. In myapp1/urls.py
+from django.urls import path
+from myapp1 import views
+urlpatterns = [
+path('greet/',views.greet),
+
+]
+6. In myapp2/urls.py
+from django.urls import path
+from myapp2 import views
+
+urlpatters = [
+path('hello/',views.hello)
+]
+
+7. In project/urls.py
+from django import path, include
+urlpatterns = [
+path('app1/',include('myapp1/urls')),
+path('app2/',include('myapp2/urls'))
+]
+
+8. Add myapp1 and myapp2 in settings.py - INSTALLED_APPS
+9. run server
