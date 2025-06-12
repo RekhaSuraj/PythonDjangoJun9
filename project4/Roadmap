@@ -1,0 +1,22 @@
+Day 4
+
+1. Create Project
+2. Create App
+3. Create folder template under project4
+4. views.py
+    def demo(request):
+	return render(request,'demo.html')
+
+
+5. in settings.py
+	INSTALLED_APPS add myapp1
+	DIRS : [os.path.join('template')] # This helps Django to know where to look for html files
+
+
+6. student.html. Also create functions student1, student2 and student3
+7. create a new folder static and place an image file inside that
+8. On top of the html file register static tag {% load static %}
+9. <img src="{% static 'student.png' %}" alt="loading" height='200px' width="200px"><br><br>
+
+10. Create index.html
+11. Create function index in views.py

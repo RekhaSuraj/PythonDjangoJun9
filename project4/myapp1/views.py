@@ -32,5 +32,6 @@ def student3(request):
     return render(request, 'student.html', stu_info)
 
 
+
 def index(request):
     return render(request, 'index.html')
