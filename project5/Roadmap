@@ -1,0 +1,30 @@
+1. Create Project
+2. Create myapp1
+3. views.py
+
+def book_list(request):
+    html = ""
+    for book in Books:
+        html += f'<div><h1>{book['id']}.{book['Author']}</h1><h3>{book['Name']}</h3></div>'
+
+    return HttpResponse(html)
+
+
+def research(request, id):
+    html = ""
+    for book in Books:
+        if book['id'] == id:
+            book_dict = book
+
+
+    html += f'<h2>{book_dict['Author']}</h2><p>{book_dict['Name']}</p>'
+
+
+4. settings.py - include myapp1
+5. urls.py
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('books/', views.book_list),
+    path('book/<int:id>/',views.research)
+]
