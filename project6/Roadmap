@@ -1,3 +1,18 @@
+In Django, FBV (Function-Based Views) and CBV (Class-Based Views) are two different ways to handle
+logic for your web pages.
+FBV - We write views as Python functions.
+CBV - We write views as Python classes, often inheriting from Django’s built-in generic views.
+
+| Feature          | FBV                           | CBV                                   |
+| ---------------- | ----------------------------- | ------------------------------------- |
+| Style            | Function                      | Class                                 |
+| Simplicity       | Easier for small/simple views | Better for large/structured projects  |
+| Code Reusability | Harder                        | Easier with inheritance/mixins        |
+| Customization    | Manual                        | Easy to extend via overriding methods |
+| Readability      | Straightforward               | May feel complex initially            |
+| Decorators       | Simple to apply               | Requires `method_decorator`           |
+
+Roadmap :
 1. Create Project
 2. Create myapp1
 3. In myapp1/models.py
@@ -11,9 +26,13 @@
     from django import forms
     from myapp1.models import Car
 
-
     # The Meta inner class tells Django which model to use (Car) and which fields to include.
     # fields = "__all__" means include all fields from the Car model in the form.
+
+    This defines a form called Car_form that inherits from forms.ModelForm.
+    ModelForm automatically generates a form based on the fields in the Car model.
+
+
     class Car_form(forms.ModelForm):
         class Meta:
             model = Car
