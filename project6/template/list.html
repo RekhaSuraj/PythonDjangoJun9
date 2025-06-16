@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Welcome to cars showroom</h2>
+{% if car %}
+<table border="3px">
+    <thead>
+    <th>Car Name</th>
+    <th>Car Color</th>
+    <th>Car Price</th>
+    <th>Car Launch</th>
+    </thead>
+    {% for i in car %}
+    <tr>
+        <td>{{i.Name}}</td>
+        <td>{{i.Color}}</td>
+        <td>{{i.Price}}</td>
+        <td>{{i.Launch}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h3>Currently no cars available</h3>
+{% endif %}
+
+</body>
+</html>

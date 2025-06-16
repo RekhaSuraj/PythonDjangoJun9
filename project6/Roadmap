@@ -1,0 +1,59 @@
+1. Create Project
+2. Create myapp1
+3. In myapp1/models.py
+    class Car(models.Model):
+    Name = models.CharField(max_length=30)
+    Color = models.CharField(max_length=20)
+    Price = models.IntegerField()
+    Launch = models.DateField()
+
+4. Create a py file forms.py manually
+    from django import forms
+    from myapp1.models import Car
+
+
+    # The Meta inner class tells Django which model to use (Car) and which fields to include.
+    # fields = "__all__" means include all fields from the Car model in the form.
+    class Car_form(forms.ModelForm):
+        class Meta:
+            model = Car
+            fields = "__all__"
+
+5. Create template folder and create a new html file 'list.html'
+6. views.py
+    from myapp1.models import Car
+
+# Create your views here.
+def car_list(request):
+    car = Car.objects.all()
+    return render(request,"list.html", {'car': car})
+
+
+7. Settings.py
+    1. Include 'myapp1'
+    2. Inside TEMPLATES = ['DIRS': [os.path.join('template')],
+    3. DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'car',
+        'USER': 'root',
+        'PASSWORD': 'root'
+    }
+}
+
+8. urls.py
+
+from myapp1 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("",views.car_list)
+]
+
+9. In terminal, pip install mysqlclient if needed
+10. Make sure database 'car' is present, if not, create one
+11. py manage.py makemigrations
+12. py manage.py migrate
+13. py manage.py runserver
+14. If no records are there in DB, else message should be shown
+15. Now insert a record in table myapp1.car and refresh
