@@ -76,3 +76,28 @@ urlpatterns = [
 13. py manage.py runserver
 14. If no records are there in DB, else message should be shown
 15. Now insert a record in table myapp1.car and refresh
+
+
+Roadmap for Adding new cars
+1. In list.html
+<a href="/form">Add Cars</a>
+2. views.py
+def carForms(request):
+    var1 = forms.Car_form() #Create an empty form
+    if request.method == 'POST':
+        var2 = forms.Car_form(request.POST)
+        if var2.is_valid():
+            var2.save() #DB save
+            return redirect('/') #redirect to calling page
+        else:
+            print(var2.errors)
+
+    return render(request,'form.html',{'var1': var1})
+
+3. form.html
+4. urlpatterns = [
+    path('admin/', admin.site.urls),
+    path("",views.car_list),
+    path('form/',views.carForms),
+]
+

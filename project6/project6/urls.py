@@ -20,5 +20,6 @@ from myapp1 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",views.car_list)
+    path("",views.car_list),
+    path('form/',views.carForms),
 ]

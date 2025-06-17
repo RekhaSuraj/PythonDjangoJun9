@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Welcome to car entry form</h2>
+<form method="POST">
+{% csrf_token %}
+<table>
+    {{ var1.as_table }}
+</table>
+<br><br>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>
