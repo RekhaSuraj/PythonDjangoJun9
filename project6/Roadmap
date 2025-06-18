@@ -146,3 +146,29 @@ Use Case	        Fetching data (e.g., search queries)	Submitting forms, uploadin
 When to Use:
 •	Use GET for requests that do not change server state, like retrieving search results.
 •	Use POST for actions that change data on the server, like submitting a form or making a payment.
+
+In views.py
+def car_update(request, id):
+    f1 = Car.objects.get(id=id)
+    if request.method == 'POST':
+        f2 = forms.Car_form(request.POST, instance=f1)
+        if f2.is_valid():
+            f2.save()
+            return redirect('/')
+        else:
+            print(f2.errors)
+
+    return render(request, 'update.html',{'f1': f1})
+
+
+# Delete
+def car_delete(request, id):
+    var1 = Car.objects.get(id=id)
+    var1.delete()
+
+    return redirect('/')
+
+
+In urls.py
+ path('update/<int:id>/',views.car_update),
+ path('delete/<int:id>/', views.car_delete),
