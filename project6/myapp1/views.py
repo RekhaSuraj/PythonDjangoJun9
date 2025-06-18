@@ -20,6 +20,29 @@ def carForms(request):
 
     return render(request,'form.html',{'var1': var1})
 
+# Update
+def car_update(request, id):
+    f1 = Car.objects.get(id=id)
+    if request.method == 'POST':
+        f2 = forms.Car_form(request.POST, instance=f1)
+        if f2.is_valid():
+            f2.save()
+            return redirect('/')
+        else:
+            print(f2.errors)
+
+    return render(request, 'update.html',{'f1': f1})
+
+
+# Delete
+def car_delete(request, id):
+    var1 = Car.objects.get(id=id)
+    var1.delete()
+
+    return redirect('/')
+
+
+
 
 
 

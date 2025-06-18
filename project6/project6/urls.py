@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.car_list),
     path('form/',views.carForms),
+    path('update/<int:id>/',views.car_update),
+    path('delete/<int:id>/', views.car_delete),
 ]

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Update Car details</h2>
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ f1.as_table }}
+        <ol>
+            <li><input type="text" name="Name" value="{{f1.Name}}"></li>
+            <li><input type="text" name="Color" value="{{f1.Color}}"></li>
+            <li><input type="text" name="Price" value="{{f1.Price}}"></li>
+            <li><input type="text" name="Launch" value="{{f1.Launch}}"></li>
+        </ol>
+    </table>
+<input type="submit" value="Save">
+</form>
+</body>
+</html>

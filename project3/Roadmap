@@ -22,8 +22,8 @@ path('hello/',views.hello)
 7. In project/urls.py
 from django import path, include
 urlpatterns = [
-path('app1/',include('myapp1/urls')),
-path('app2/',include('myapp2/urls'))
+path('app1/',include('myapp1.urls')),
+path('app2/',include('myapp2.urls'))
 ]
 
 8. Add myapp1 and myapp2 in settings.py - INSTALLED_APPS
