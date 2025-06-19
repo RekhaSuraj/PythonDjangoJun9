@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from myapp1.models import Car
 from myapp1 import forms
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
+@login_required
 def car_list(request):
     car = Car.objects.all()
     return render(request,"list.html", {'car': car})
 
+@login_required
 def carForms(request):
     var1 = forms.Car_form() #Create an empty form
     if request.method == 'POST':
@@ -21,6 +25,7 @@ def carForms(request):
     return render(request,'form.html',{'var1': var1})
 
 # Update
+@login_required
 def car_update(request, id):
     f1 = Car.objects.get(id=id)
     if request.method == 'POST':
@@ -35,6 +40,7 @@ def car_update(request, id):
 
 
 # Delete
+@login_required
 def car_delete(request, id):
     var1 = Car.objects.get(id=id)
     var1.delete()
@@ -42,7 +48,9 @@ def car_delete(request, id):
     return redirect('/')
 
 
-
+@login_required
+def logout(request):
+    return render(request, 'logout.html')
 
 
 

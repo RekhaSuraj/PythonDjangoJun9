@@ -13,6 +13,7 @@
     <th>Car Color</th>
     <th>Car Price</th>
     <th>Car Launch</th>
+    <th>Update or Delete</th>
     </thead>
     {% for i in car %}
     <tr>
@@ -20,6 +21,10 @@
         <td>{{i.Color}}</td>
         <td>{{i.Price}}</td>
         <td>{{i.Launch}}</td>
+        <td>
+            <a href="{% url 'car_update' i.id %}">Edit</a>
+            <a href="{% url 'car_delete' i.id %}">Delete</a>
+        </td>
     </tr>
     {% endfor %}
 </table>

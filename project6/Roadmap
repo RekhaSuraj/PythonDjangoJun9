@@ -172,3 +172,8 @@ def car_delete(request, id):
 In urls.py
  path('update/<int:id>/',views.car_update),
  path('delete/<int:id>/', views.car_delete),
+
+
+To create superuser
+py manage.py createsuperuser
+user name and password
