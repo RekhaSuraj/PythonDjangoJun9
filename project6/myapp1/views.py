@@ -48,7 +48,6 @@ def car_delete(request, id):
     return redirect('/')
 
 
-@login_required
 def logout(request):
     return render(request, 'logout.html')
 

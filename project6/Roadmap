@@ -174,6 +174,46 @@ In urls.py
  path('delete/<int:id>/', views.car_delete),
 
 
-To create superuser
+To create superuser - note that tables should be created in DB - that is makemigrations should have run
 py manage.py createsuperuser
 user name and password
+
+-----------------------------------------------------------------
+Login inclusion
+
+In views.py
+following library to be included:
+1. from django.contrib.auth.decorators import login_required
+
+2. Include login_required decorator on all functions
+3. Add a new function
+def logout(request):
+    return render(request, 'logout.html')
+
+4. In urls.py:
+
+from django.urls import path, include
+from myapp1 import views
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/',include('django.contrib.auth.urls')),
+    path("",views.car_list),
+    path('form/',views.carForms),
+    path('update/<int:id>/',views.car_update, name='car_update'),
+    path('delete/<int:id>/', views.car_delete, name='car_delete'),
+    path('logout/',views.logout)
+]
+
+5. 2 new files
+login.html under a new directory registration inside template directory
+logout.html just inside template directory
+
+6. In admin.py - to see Car objects created
+from myapp1.models import Car
+
+# Register your models here.
+admin.site.register(Car)
+
+
