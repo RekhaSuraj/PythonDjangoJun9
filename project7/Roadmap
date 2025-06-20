@@ -1,0 +1,63 @@
+| CBV Type     | Default Template                    |
+| ------------ | ----------------------------------- |
+| `ListView`   | `<app>/<model>_list.html`           |
+| `DetailView` | `<app>/<model>_detail.html`         |
+| `CreateView` | `<app>/<model>_form.html`           |
+| `UpdateView` | `<app>/<model>_form.html`           |
+| `DeleteView` | `<app>/<model>_confirm_delete.html` |
+
+
+CBVs Use Default Template Names Based on App Name
+When you use a CBV like ListView, Django automatically looks for a template using this pattern:
+
+<app_name>/<model>_<view_type>.html
+
+if your app is App1 and model is Product, and you're using ListView, Django will look for: App1/product_list.html
+
+Roadmap:
+1. Create Project
+2. Create App
+3. In models.py
+class Product(models.Model):
+    PpName = models.CharField(max_length=20)
+    Pprice = models.IntegerField()
+    Pcolor = models.CharField(max_length=20)
+    Quantity = models.IntegerField()
+
+4. In views.py
+
+class Greetings(View):
+
+    def get(self,request):
+        return HttpResponse('<h2>Welcome to class based views</h2>')
+
+
+class ProductListView(ListView):
+    model = Product
+
+5. Settings.py
+    App1, os.path.join('template')
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'product',
+        'USER': 'root',
+        'PASSWORD': 'root'
+    }
+}
+
+6. In urls.py
+from App1 import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # path('',views.Greetings.as_view()),
+    path('',views.ProductListView.as_view())
+]
+
+7. Make sure product database is created in mysql
+8. py manage.py migrations
+9. py manage.py migrate
+10. py manage.py runserver
+11. Empty records will be shown - Insert records in DB and refresh
+

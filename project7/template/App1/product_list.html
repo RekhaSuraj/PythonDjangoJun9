@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Welcome to Product Shopping</h2>
+{% if product_list %}
+<table border="3px">
+    <thead>
+    <th>Product Name</th>
+    <th>Product Price</th>
+    <th>Product Color</th>
+    <th>Product Quantity</th>
+    </thead>
+    {% for pro in product_list %}
+    <tr>
+        <td>{{pro.PpName}}</td>
+        <td>{{pro.Pprice}}</td>
+        <td>{{pro.Pcolor}}</td>
+        <td>{{pro.Quantity}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2>Currently no products available</h2>
+{% endif %}
+</body>
+</html>
