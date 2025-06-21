@@ -46,6 +46,10 @@ class ProductListView(ListView):
     }
 }
 
+Create template under project7
+create App1 directory inside : template/App1
+Inside App1 create html files
+
 6. In urls.py
 from App1 import views
 
@@ -55,9 +59,65 @@ urlpatterns = [
     path('',views.ProductListView.as_view())
 ]
 
+
+
 7. Make sure product database is created in mysql
 8. py manage.py migrations
 9. py manage.py migrate
 10. py manage.py runserver
 11. Empty records will be shown - Insert records in DB and refresh
+========================================================================
+Detail View
+1. In views.py
+class ProductDetailView(DetailView):
+    model = Product
 
+2. In product_list.html
+Add a header td and a row td
+ <th>ProductID</th>
+
+ <td><a href="/{{pro.id}}">{{pro.id}}</a></td>
+
+3. In urls.py
+path('<int:pk>/',views.ProductDetailView.as_view())
+
+====================================================================================
+Create View
+
+In views.py
+
+class ProductCreateView(CreateView):
+    model = Product
+    # fields = 'Pname'
+    fields = '__all__'
+
+
+In product_list.html
+<a href="/create">Add Product</a>
+
+In urls.py
+path('create/',views.ProductCreateView.as_view())
+
+If we receive error like below,
+"No URL to redirect to.  Either provide a url or define a get_absolute_url method on the Model."
+
+Add below line
+In models.py
+
+    # List view redirect
+    # def get_absolute_url(self):
+    #     return reverse('pro1')
+
+    # Detail view redirect
+    def get_absolute_url(self):
+        return reverse('pro2', args={self.pk})
+
+
+Then in urls.py
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # path('',views.Greetings.as_view()),
+    path('',views.ProductListView.as_view(), name='pro1'),
+    path('<int:pk>/',views.ProductDetailView.as_view(), name='pro2'),
+    path('create/',views.ProductCreateView.as_view())
+]

@@ -21,5 +21,7 @@ from App1 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',views.Greetings.as_view()),
-    path('',views.ProductListView.as_view())
+    path('',views.ProductListView.as_view(), name='pro1'),
+    path('<int:pk>/',views.ProductDetailView.as_view(), name='pro2'),
+    path('create/',views.ProductCreateView.as_view()) #No URL to redirect to.  Either provide a url or define a get_absolute_url method on the Model.
 ]

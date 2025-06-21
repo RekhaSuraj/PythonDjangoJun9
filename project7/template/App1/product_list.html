@@ -9,6 +9,7 @@
 {% if product_list %}
 <table border="3px">
     <thead>
+    <th>ProductID</th>
     <th>Product Name</th>
     <th>Product Price</th>
     <th>Product Color</th>
@@ -16,7 +17,8 @@
     </thead>
     {% for pro in product_list %}
     <tr>
-        <td>{{pro.PpName}}</td>
+        <td><a href="/{{pro.id}}">{{pro.id}}</a></td>
+        <td>{{pro.Pname}}</td>
         <td>{{pro.Pprice}}</td>
         <td>{{pro.Pcolor}}</td>
         <td>{{pro.Quantity}}</td>
@@ -26,5 +28,7 @@
 {% else %}
 <h2>Currently no products available</h2>
 {% endif %}
+<br>
+<a href="/create">Add Product</a>
 </body>
 </html>

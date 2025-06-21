@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView
 from App1.models import Product
 
 # from django.views import View
@@ -21,3 +21,13 @@ class Greetings(View):
 
 class ProductListView(ListView):
     model = Product
+
+
+class ProductDetailView(DetailView):
+    model = Product
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    # fields = 'Pname'
+    fields = '__all__'
