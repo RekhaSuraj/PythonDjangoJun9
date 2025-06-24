@@ -166,6 +166,13 @@ urlpatterns = [
 ]
 
 
+reverse_lazy 		vs reverse
+Feature			    reverse					            reverse_lazy
+When it resolves	Immediately				            Only when needed (lazily)
+Common use case		Function-based views, decorators	Class-based views, urls.py, success_url
+Import from		    from django.urls import reverse		from django.urls import reverse_lazy
+
+
 
 
 
