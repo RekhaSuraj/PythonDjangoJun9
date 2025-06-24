@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from App1.models import Product
 
 # from django.views import View
@@ -31,3 +32,13 @@ class ProductCreateView(CreateView):
     model = Product
     # fields = 'Pname'
     fields = '__all__'
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = '__all__'
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('pro1')

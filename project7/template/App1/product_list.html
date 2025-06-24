@@ -14,6 +14,7 @@
     <th>Product Price</th>
     <th>Product Color</th>
     <th>Product Quantity</th>
+    <th>Edit/Delete</th>
     </thead>
     {% for pro in product_list %}
     <tr>
@@ -22,6 +23,8 @@
         <td>{{pro.Pprice}}</td>
         <td>{{pro.Pcolor}}</td>
         <td>{{pro.Quantity}}</td>
+        <td><a href="{% url 'pro_update' pro.id %}">Edit</a></td>
+        <td><a href="{% url 'pro_delete' pro.id %}">Delete</a></td>
     </tr>
     {% endfor %}
 </table>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends 'App1/base.html' %}
+{% block body_block %}
+<body>
+<h2>Are you sure you want to delete the product: {{product.Pname}}?</h2>
+<form method="POST">
+{% csrf_token %}
+<br>
+    <input type="submit" value="confirm">
+    <br>
+<a href="/">Cancel</a>
+</form>
+</body>
+{% endblock %}
+
