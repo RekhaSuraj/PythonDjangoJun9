@@ -1,0 +1,50 @@
+Session Management:
+
+Client and server can communicate with some common langauge which is nothing but HTTP.
+
+The basic limitation of HTTP it is stateless protocol. i.e, it is unable to remember client information
+for future purpose across multiple request.
+Every request to the server is treated as  a new request only.
+
+
+Why we are using Session ?
+
+To remember client information at server side, some special mechanism must be required
+which is nothing but session management mechanisms.
+
+The following are various session management mechanisms.
+
+1.Cookies
+2.Session API
+3.URL Writing
+4.Hidden form fields.
+
+
+SESSION MANAGEMENT BY USING COOKIES :
+
+What is cookie ?
+Cookies is a very small amount of information created by server and maintained by client.
+
+
+To add cookie to response
+    response.set_cookie(cookie_key, cookie_value)
+
+To get cookie send by client:
+    request.COOKIES['cookie_key']
+
+    request.COOKIES.get(cookie_name,default_value)   by default set a value.
+
+
+Summary:
+Action		    Who does it?
+Set-Cookie	    ✅ Server
+Store Cookie	✅ Client (browser)
+Send Cookie	    ✅ Client (browser)
+Read Cookie	    ✅ Server via request.COOKIES
+
+Roadmap
+1. Create Project
+2. Create app
+3. views.py - count_page
+4. template/count.html
+5. Updates in Settings and urls.py
