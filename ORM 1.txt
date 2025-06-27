@@ -1,0 +1,134 @@
+ORM (Object Relational Mapping)
+ORM stands for Object-Relational Mapping — it's a way to interact with the database using Python objects instead of writing raw SQL queries.
+
+Django’s ORM lets you:
+
+Define your database structure using Python classes (called models).
+Automatically generate SQL tables and handle relationships.
+Perform Create, Read, Update, Delete (CRUD) operations using Python code.
+
+
+1. Example Model Definition:
+
+from django.db import models
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.FloatField()
+
+
+Django ORM will create a SQL table like:
+CREATE TABLE appname_product (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100),
+    price FLOAT
+);
+
+
+2. Inserting Data (No SQL needed!)
+p = Product(name='Pen', price=10.5)
+p.save()
+
+
+3. Querying Data
+
+# Get all products
+Product.objects.all()
+
+# Filter by name
+Product.objects.filter(name='Pen')
+
+# Get one object
+Product.objects.get(id=1)
+
+
+4. Updating Data
+
+p = Product.objects.get(id=1)
+p.price = 15
+p.save()
+
+
+5. Deleting Data
+p = Product.objects.get(id=1)
+p.delete()
+
+
+Why ORM:
+| Feature          | Benefit                                         |
+| ---------------- | ----------------------------------------------- |
+| ✅ Easy to learn  | Use Python instead of SQL                       |
+| ✅ Cross-database | Works with PostgreSQL, MySQL, SQLite, etc.      |
+| ✅ Safe           | Helps prevent SQL injection                     |
+| ✅ Integrated     | Automatically works with Django forms and admin |
+
+
+
+======================================================================================================================
+
+Microsoft Windows [Version 10.0.26100.4351]
+(c) Microsoft Corporation. All rights reserved.
+
+(.venv) F:\Rekha\GRKTrainings\Django\Django>cd project8
+
+(.venv) F:\Rekha\GRKTrainings\Django\Django\project8>py manage.py shell
+7 objects imported automatically (use -v 2 for details).
+
+Python 3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from myapp1.models import Car
+>>> d1 = Car.objects.all()
+>>> print(d1)
+<QuerySet [<Car: Car object (4)>, <Car: Car object (12)>]>
+>>> print(type(d1))
+<class 'django.db.models.query.QuerySet'>
+
+HOW TO GET CAR DETAILS:
+>>> x1 = Car.objects.get(id=4)
+>>> print(x1)
+Car object (4)
+
+>>> print(x1.Name)
+TATA Nexona
+>>> print(x1.Color)
+green1
+>>> print(x1)
+Car object (4)
+
+Filtering data:
+1.gt=(greater than)
+2.gte=(greater than equal)
+3.contains
+4.icontains
+5.in
+6.endwith
+
+GT
+>>> Car.objects.filter(Price__gt=200001)  
+<QuerySet [<Car: Car object (12)>]>
+
+GTE
+
+>>> z=Car.objects.filter(Price__gt=200001)  
+>>> print(z)
+<QuerySet [<Car: Car object (12)>]>
+
+LT
+>>> l = Car.objects.filter(Price__lt=200002)
+>>> print(l)
+<QuerySet [<Car: Car object (4)>]>
+
+4)contains: Insentive search -->we see the querry
+>>> n = Car.objects.filter(Name__contains='TATA')
+>>> print(n)
+<QuerySet [<Car: Car object (4)>]>
+
+5)icontains= Is the case Insensitive
+>>> n = Car.objects.filter(Name__icontains='tatA') 
+>>> print(n)
+<QuerySet [<Car: Car object (4)>]>
+
+IN
+>>> Car.objects.filter(id__in=[4,12])
+<QuerySet [<Car: Car object (4)>, <Car: Car object (12)>]>
