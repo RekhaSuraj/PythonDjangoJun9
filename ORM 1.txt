@@ -132,3 +132,67 @@ LT
 IN
 >>> Car.objects.filter(id__in=[4,12])
 <QuerySet [<Car: Car object (4)>, <Car: Car object (12)>]>
+
+
+LOGICAL OPERATORS:
+OR Operator:
+
+>>> Car.objects.filter(Name__startswith='Nex')|Car.objects.filter(Name__startswith='TAT')
+<QuerySet [<Car: Car object (4)>, <Car: Car object (12)>]>
+
+
+AND Operator:
+>>> Car.objects.filter(Name__startswith='Nex')&Car.objects.filter(Name__startswith='TAT')
+<QuerySet []>
+>>> Car.objects.filter(Name__startswith='Nex')&Car.objects.filter(Color__startswith='blue')
+<QuerySet [<Car: Car object (12)>]>
+
+
+
+>>> Car.objects.all().values('Name')
+<QuerySet [{'Name': 'TATA Nexon'}, {'Name': 'Mahindra'}, {'Name': 'Nexa XL645'}, {'Name': 'Honda'}]>
+>>> Car.objects.all().values('Price')
+<QuerySet [{'Price': 200001}, {'Price': 1000000}, {'Price': 2500000}, {'Price': 1500000}]>
+
+
+AGGREGATE FUNCTIONS:
+
+>>> from django.db.models import Avg,Sum,Max,Min,Count
+>>> Car.objects.all().aggregate(Avg('Price'))
+{'Price__avg': 1300000.25}
+>>> Car.objects.all().aggregate(Sum('Price'))
+{'Price__sum': 5200001}
+>>> Car.objects.all().aggregate(Max('Price'))
+{'Price__max': 2500000}
+>>> Car.objects.all().aggregate(Min('Price'))
+{'Price__min': 200001}
+>>> Car.objects.all().aggregate(Count('Price'))
+{'Price__count': 4}
+
+
+INSERT DATA:
+>>> add1=Car(Name='Jimny', Color='green',Price=1600000, Launch='2025-08-20')
+>>> add1.save()
+
+
+BULK CREATE:
+SYNTAX: Modelsclassname.objects.bulk_create([])
+
+data = Student_Info.objects.bulk_create([Car(Name='BMW',Color='White',Price=1000000,Launch='2025-10-12'),
+Car(Name='Kia',Color='Grey',Price=1800000,Launch='2025-11-10')])
+
+
+UPDATE DATA:
+>>> a1 = Car.objects.get(id=14)
+>>> a1.Name
+'Honda'
+>>> a1.Name = 'Thar'
+>>> a1.save()
+
+
+DELETE Single Data:
+
+>>> d1 = Car.objects.get(id=12)
+>>> d1.delete()
+(1, {'myapp1.Car': 1})
+
